@@ -1,0 +1,40 @@
+# Maintainer: Olaf Wriggers <olaf@olwig.xyz>
+
+pkgname=prime-select-envycontrol-git
+_pkgname=prime-select-envycontrol
+pkgver=0
+pkgrel=1
+pkgdesc="prime-select wrapper using envycontrol so GPU switching works in TUXEDO Control Center (tuxedo-control-center)"
+arch=('any')
+url="https://github.com/olwig/prime-select-envycontrol"
+license=('MIT')
+
+depends=('envycontrol')
+makedepends=('git')
+
+provides=('prime-select')
+conflicts=('prime-select')
+
+source=("git+https://github.com/olwig/${_pkgname}.git#branch=main")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/$_pkgname"
+
+  if git describe --long --tags --abbrev=7 >/dev/null 2>&1; then
+    git describe --long --tags --abbrev=7 | sed 's/^v//;s/-/./g'
+  else
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  fi
+}
+
+package() {
+  cd "$srcdir/$_pkgname"
+
+  # install wrapper
+  install -Dm755 prime-select.sh "$pkgdir/usr/bin/prime-select"
+
+  # marker required for TUXEDO Control Center detection
+  install -Dm644 /dev/null \
+    "$pkgdir/var/lib/ubuntu-drivers-common/requires_offloading"
+}
