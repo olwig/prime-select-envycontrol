@@ -29,15 +29,14 @@ internally uses `envycontrol`.
 
 ## How it works
 
-The wrapper exposes the `prime-select` CLI and forwards commands to
-`envycontrol`.
+The wrapper exposes the `prime-select` CLI and forwards commands to `envycontrol`.
 
-  prime-select   envycontrol
-  -------------- ---------------------
-  intel          --switch integrated
-  nvidia         --switch nvidia
-  on-demand      --switch hybrid
-  query          envycontrol --query
+| `prime-select` command | `envycontrol` equivalent |
+|---|---|
+| `intel` | `envycontrol --switch integrated` |
+| `nvidia` | `envycontrol --switch nvidia` |
+| `on-demand` | `envycontrol --switch hybrid` |
+| `query` | `envycontrol --query` |
 
 Additionally the file
 
