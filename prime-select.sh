@@ -24,6 +24,14 @@
 set -euo pipefail
 
 # ------------------------------------------------------------
+# Dependency check
+# ------------------------------------------------------------
+command -v envycontrol >/dev/null 2>&1 || {
+    echo "prime-select: envycontrol not found" >&2
+    exit 127
+}
+
+# ------------------------------------------------------------
 # Translate envycontrol query output to prime-select format
 # ------------------------------------------------------------
 map_envycontrol_to_prime() {
