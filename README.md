@@ -3,6 +3,13 @@
 Compatibility wrapper that provides a `prime-select` interface using
 `envycontrol` for the TUXEDO Control Center.
 
+⚠️ **Early prototype**
+
+This project is an initial scratch implementation. It currently works in basic scenarios but has not been thoroughly tested yet.
+
+Expect rough edges, missing checks, and potential bugs. The code and behavior may change significantly as the project evolves.
+
+
 ## Motivation
 
 The intention of this project was to enable the GPU switching options in
